@@ -116,6 +116,21 @@ class EntryRepository extends EntityRepository
     }
 
     /**
+     * Retrieve entries with annotations for a user.
+     *
+     * @param int $userId
+     *
+     * @return QueryBuilder
+     */
+    public function getBuilderForAnnotationsByUser($userId)
+    {
+        return $this
+            ->getSortedQueryBuilderByUser($userId)
+            ->innerJoin('e.annotations', 'a')
+            ;
+    }
+
+    /**
      * Retrieve untagged entries for a user.
      *
      * @param int $userId
@@ -551,6 +566,10 @@ class EntryRepository extends EntityRepository
             case 'untagged':
                 $qb->leftJoin('e.tags', 't');
                 $qb->andWhere('t.id is null');
+                break;
+            case 'with_annotations':
+                $qb->leftJoin('e.annotations', 'a');
+                $qb->andWhere('a.id is not null');
                 break;
         }
 
