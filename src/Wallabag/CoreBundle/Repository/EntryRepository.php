@@ -567,7 +567,7 @@ class EntryRepository extends EntityRepository
                 $qb->leftJoin('e.tags', 't');
                 $qb->andWhere('t.id is null');
                 break;
-            case 'with_annotations':
+            case 'annotated':
                 $qb->leftJoin('e.annotations', 'a');
                 $qb->andWhere('a.id is not null');
                 break;
