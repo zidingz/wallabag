@@ -28,9 +28,10 @@ class EntriesExport
     private $user;
 
     /**
-     * @param TranslatorInterface $translator  Translator service
-     * @param string              $wallabagUrl Wallabag instance url
-     * @param string              $logoPath    Path to the logo FROM THE BUNDLE SCOPE
+     * @param TranslatorInterface   $translator     Translator service
+     * @param string                $wallabagUrl    Wallabag instance url
+     * @param string                $logoPath       Path to the logo FROM THE BUNDLE SCOPE
+     * @param TokenStorageInterface $tokenStorage   Needed to retrieve the current user
      */
     public function __construct(TranslatorInterface $translator, $wallabagUrl, $logoPath, TokenStorageInterface $tokenStorage)
     {
